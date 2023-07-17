@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -30,12 +31,18 @@ import org.parceler.Parcels;
 import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.Nullable;
+
+import com.facebook.react.ReactInstanceManager;
+
 import me.grishka.appkit.FragmentStackActivity;
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
 
 public class MainActivity extends FragmentStackActivity{
+	private static final int OVERLAY_PERMISSION_REQ_CODE=1;
+	private ReactInstanceManager mReactInstanceManager;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState){
 		UiUtils.setUserPreferredTheme(this);

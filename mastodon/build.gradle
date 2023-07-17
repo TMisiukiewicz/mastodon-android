@@ -101,16 +101,9 @@ dependencies {
 }
 
 configurations {
-	implementation.exclude module:'androidx.collection'
 	all*.exclude group: 'androidx.collection', module: 'collection'
-
-	implementation.exclude module:'me.grishka.litex'
 	all*.exclude group: 'me.grishka.litex', module: 'concurrent'
-
-	implementation.exclude module:'androidx.viewpager'
 	all*.exclude group: 'androidx.viewpager', module: 'viewpager'
-
-	implementation.exclude module:'androidx.swiperefreshlayout'
 	all*.exclude group: 'androidx.swiperefreshlayout', module: 'swiperefreshlayout'
 }
 

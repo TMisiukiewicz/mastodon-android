@@ -30,8 +30,9 @@
 		android:localeConfig="@xml/locales_config"
 		android:icon="@mipmap/ic_launcher"
 		android:theme="@style/Theme.Mastodon.AutoLightDark"
+		android:usesCleartextTraffic="true"
 		android:largeHeap="true">
-
+		<activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 		<activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize" android:windowSoftInputMode="adjustResize" android:launchMode="singleTask">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
@@ -70,7 +71,10 @@
 				<data android:mimeType="*/*"/>
 			</intent-filter>
 		</activity>
-
+		<activity
+		android:name=".ReactActivity"
+		android:label="@string/app_name">
+		</activity>
 		<service android:name=".AudioPlayerService" android:foregroundServiceType="mediaPlayback"/>
 
 		<receiver android:name=".PushNotificationReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">

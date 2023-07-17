@@ -1,5 +1,6 @@
 package org.joinmastodon.android.fragments;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ProgressBar;
 
 import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.R;
+import org.joinmastodon.android.ReactActivity;
 import org.joinmastodon.android.api.requests.catalog.GetCatalogDefaultInstances;
 import org.joinmastodon.android.api.requests.instance.GetInstance;
 import org.joinmastodon.android.fragments.onboarding.InstanceCatalogSignupFragment;
@@ -113,36 +115,8 @@ public class SplashFragment extends AppKitFragment{
 	}
 
 	private void onJoinDefaultServerClick(View v){
-		if(loadingDefaultServer)
-			return;
-		new GetInstance()
-				.setCallback(new Callback<>(){
-					@Override
-					public void onSuccess(Instance result){
-						if(getActivity()==null)
-							return;
-						if(!result.registrations){
-							new M3AlertDialogBuilder(getActivity())
-									.setTitle(R.string.error)
-									.setMessage(R.string.instance_signup_closed)
-									.setPositiveButton(R.string.ok, null)
-									.show();
-							return;
-						}
-						Bundle args=new Bundle();
-						args.putParcelable("instance", Parcels.wrap(result));
-						Nav.go(getActivity(), InstanceRulesFragment.class, args);
-					}
-
-					@Override
-					public void onError(ErrorResponse error){
-						if(getActivity()==null)
-							return;
-						error.showToast(getActivity());
-					}
-				})
-				.wrapProgress(getActivity(), R.string.loading_instance, true)
-				.execNoAuth(chosenDefaultServer);
+		Intent intent = new Intent(getActivity(), ReactActivity.class);
+        startActivity(intent);
 	}
 
 	private void onLearnMoreClick(View v){
