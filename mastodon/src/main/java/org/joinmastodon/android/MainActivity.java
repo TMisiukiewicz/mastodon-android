@@ -76,6 +76,14 @@ public class MainActivity extends FragmentStackActivity{
 					maybeRequestNotificationsPermission();
 				}
 			}
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				if (!Settings.canDrawOverlays(this)) {
+					Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+											Uri.parse("package:" + getPackageName()));
+					startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
+				}
+			}
 		}
 
 		if(BuildConfig.BUILD_TYPE.startsWith("appcenter")){
@@ -118,6 +126,18 @@ public class MainActivity extends FragmentStackActivity{
 		}/*else if(intent.hasExtra(PackageInstaller.EXTRA_STATUS) && GithubSelfUpdater.needSelfUpdating()){
 			GithubSelfUpdater.getInstance().handleIntentFromInstaller(intent, this);
 		}*/
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == OVERLAY_PERMISSION_REQ_CODE) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				if (!Settings.canDrawOverlays(this)) {
+					// SYSTEM_ALERT_WINDOW permission not granted
+				}
+			}
+		}
+		mReactInstanceManager.onActivityResult( this, requestCode, resultCode, data );
 	}
 
 	public void handleURL(Uri uri, String accountID){
