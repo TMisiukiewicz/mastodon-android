@@ -99,4 +99,19 @@ dependencies {
 	androidTestImplementation 'androidx.test:runner:1.5.2'
 	androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+configurations {
+	implementation.exclude module:'androidx.collection'
+	all*.exclude group: 'androidx.collection', module: 'collection'
+
+	implementation.exclude module:'me.grishka.litex'
+	all*.exclude group: 'me.grishka.litex', module: 'concurrent'
+
+	implementation.exclude module:'androidx.viewpager'
+	all*.exclude group: 'androidx.viewpager', module: 'viewpager'
+
+	implementation.exclude module:'androidx.swiperefreshlayout'
+	all*.exclude group: 'androidx.swiperefreshlayout', module: 'swiperefreshlayout'
+}
+
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
