@@ -32,21 +32,20 @@ import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.Nullable;
 
-import com.facebook.react.ReactInstanceManager;
-
 import me.grishka.appkit.FragmentStackActivity;
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
 
-public class MainActivity extends FragmentStackActivity{
+public class MainActivity extends FragmentStackActivity {
 	private static final int OVERLAY_PERMISSION_REQ_CODE=1;
-	private ReactInstanceManager mReactInstanceManager;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState){
 		UiUtils.setUserPreferredTheme(this);
 		super.onCreate(savedInstanceState);
+
+		ReactBridgeManager.shared.loadReactNative(this);
 
 		if(savedInstanceState==null){
 			if(AccountSessionManager.getInstance().getLoggedInAccounts().isEmpty()){
@@ -144,7 +143,7 @@ public class MainActivity extends FragmentStackActivity{
 				}
 			}
 		}
-		mReactInstanceManager.onActivityResult( this, requestCode, resultCode, data );
+		ReactBridgeManager.shared.getReactNativeHost().getReactInstanceManager().onActivityResult(this, requestCode, resultCode, data);
 	}
 
 	public void handleURL(Uri uri, String accountID){
@@ -227,4 +226,5 @@ public class MainActivity extends FragmentStackActivity{
 			requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 100);
 		}
 	}
+
 }
