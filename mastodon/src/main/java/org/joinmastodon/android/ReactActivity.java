@@ -19,8 +19,9 @@ public class ReactActivity extends Activity implements DefaultHardwareBackBtnHan
         SoLoader.init(this, false);
 
 		reactRootView = new ReactRootView(this);
+		mReactInstanceManager = ReactBridgeManager.shared.getReactNativeHost().getReactInstanceManager();
 		reactRootView.startReactApplication(
-				ReactBridgeManager.shared.getReactNativeHost().getReactInstanceManager(),
+				mReactInstanceManager,
 				"ReactNativeScreen",
 				null
 		);
