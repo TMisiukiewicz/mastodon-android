@@ -6,11 +6,11 @@ plugins {
 
 android {
 	namespace "org.joinmastodon.android"
-	compileSdk 34
+	compileSdk 35
 	defaultConfig {
 		applicationId "org.joinmastodon.android"
 		minSdk 24
-		targetSdk 33
+		targetSdk 34
 		versionCode 61
 		versionName "2.0.1"
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
