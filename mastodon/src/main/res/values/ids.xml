@@ -26,4 +26,6 @@
 
 	<item name="server_about" type="id"/>
 	<item name="server_rules" type="id"/>
+    <item name="fragment_wrap" type="id"/>
+	<item name="item_touch_helper_previous_elevation" type="id" />
 </resources>
