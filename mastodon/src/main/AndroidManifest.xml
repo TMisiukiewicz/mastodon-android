@@ -71,7 +71,8 @@
 			</intent-filter>
 		</activity>
 		<activity
-		android:name=".ReactActivity"
+		android:name=".MyReactActivity"
+		android:theme="@style/Theme.AppCompat.Light.NoActionBar"
 		android:label="@string/app_name">
 		</activity>
 		<service android:name=".AudioPlayerService" android:foregroundServiceType="mediaPlayback"/>

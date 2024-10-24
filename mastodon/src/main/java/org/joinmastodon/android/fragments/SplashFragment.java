@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 
 import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.R;
-import org.joinmastodon.android.ReactActivity;
+import org.joinmastodon.android.MyReactActivity;
 import org.joinmastodon.android.api.requests.catalog.GetCatalogDefaultInstances;
 import org.joinmastodon.android.api.requests.instance.GetInstance;
 import org.joinmastodon.android.fragments.onboarding.InstanceCatalogSignupFragment;
@@ -115,7 +115,7 @@ public class SplashFragment extends AppKitFragment{
 	}
 
 	private void onJoinDefaultServerClick(View v){
-		Intent intent = new Intent(getActivity(), ReactActivity.class);
+		Intent intent = new Intent(getActivity(), MyReactActivity.class);
         startActivity(intent);
 	}
 
